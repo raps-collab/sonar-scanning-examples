@@ -16,6 +16,7 @@ pipeline {
      stage('SCM') {
          steps{
             git 'https://github.com/eshwarmolugu/sonar-scanning-examples.git'
+		sh 'mvn clean package sonar:sonar'
          }
      }
     stage('SonarQube analysis') {
