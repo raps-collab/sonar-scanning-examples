@@ -15,7 +15,7 @@ pipeline {
 			steps {
 				echo "UAT"
 				 withSonarQubeEnv('SonarQube_Cloud') {
-      // sh 'sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner2.properties'
+      					 sh 'sonar-scanner sonar-scanner.properties'
               }	
 	      snDevOpsSonar(name:'SonarQube_Cloud', projectKey:'TestingSonarQube')
 			}
