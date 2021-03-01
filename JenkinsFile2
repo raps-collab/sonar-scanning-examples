@@ -8,6 +8,7 @@ pipeline {
 		}
 		stage("Code Quality") {
 			steps {
+			echo "Code Quality"
 			}
 		}
 		stage("UAT") {
