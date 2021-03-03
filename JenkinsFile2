@@ -1,19 +1,19 @@
 pipeline {
     agent any
     stages {
-		stage("Build") {
+		stage('Build') {
 			steps {
 			snDevOpsStep()
 				
 			}
 		}
-		stage("CodeQuality") {
+		stage('CodeQuality') {
 			steps {
 			snDevOpsStep()
 			
 			}
 		}
-		stage("UAT") {
+		stage('UAT') {
 			steps {
 			snDevOpsStep()
 				
@@ -23,7 +23,7 @@ pipeline {
 	      snDevOpsSonar(name:'SonarQube_Cloud', projectKey:'TestingSonarQube')
 			}
 		}
-		stage("Prod") {
+		stage('Prod') {
 			steps {
 			snDevOpsStep()
 					
