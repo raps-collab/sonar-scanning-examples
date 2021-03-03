@@ -6,7 +6,7 @@ pipeline {
 				echo "BUILD"	
 			}
 		}
-		stage("Code Quality") {
+		stage("CodeQuality") {
 			steps {
 			echo "Code Quality"
 			}
