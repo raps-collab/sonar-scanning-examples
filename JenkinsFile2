@@ -3,19 +3,19 @@ pipeline {
     stages {
 		stage("Build") {
 			steps {
-			snDevOpsStep ()
+			snDevOpsStep()
 				
 			}
 		}
 		stage("CodeQuality") {
 			steps {
-			snDevOpsStep ()
+			snDevOpsStep()
 			
 			}
 		}
 		stage("UAT") {
 			steps {
-			snDevOpsStep ()
+			snDevOpsStep()
 				
 				 withSonarQubeEnv('SonarQube_Cloud') {
        sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner2.properties'
@@ -25,7 +25,7 @@ pipeline {
 		}
 		stage("Prod") {
 			steps {
-			snDevOpsStep ()
+			snDevOpsStep()
 					
 			}
 		}
