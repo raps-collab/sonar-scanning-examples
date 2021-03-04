@@ -8,8 +8,11 @@ pipeline {
 		}
 		stage('Build') {
 			steps {
-			snDevOpsStep()
-				
+				echo 'build'
+				 withSonarQubeEnv('SonarQube_Local') {
+       sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner.properties'
+              }	
+			}
 			}
 		}
 		stage('CodeQuality') {
@@ -25,18 +28,18 @@ pipeline {
 				 withSonarQubeEnv('SonarQube_Cloud') {
        sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner2.properties'
               }	
-	      snDevOpsSonar(name:'SonarQube_Cloud', projectKey:'TestingSonarQube')
+	      //snDevOpsSonar(name:'SonarQube_Cloud', projectKey:'TestingSonarQube')
 			}
 		}
 		stage('Prod') {
 			steps {
-			snDevOpsStep()
+			echo 'prod'
 					
 			}
 		}
 		stage('TestChange') {
 			steps {
-			sleep(60)
+			//sleep(60)
 			snDevOpsChange()
 					
 			}
