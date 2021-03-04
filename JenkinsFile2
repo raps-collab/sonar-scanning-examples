@@ -36,7 +36,7 @@ pipeline {
 		}
 		stage('TestChange') {
 			steps {
-			sleep(10)
+			sleep(60)
 			snDevOpsChange()
 					
 			}
