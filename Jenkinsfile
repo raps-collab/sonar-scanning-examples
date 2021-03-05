@@ -24,6 +24,12 @@ pipeline {
     stage('Prod') {
       steps {
         echo 'prod'
+	       withSonarQubeEnv('SonarQube_Cloud') {
+          	sh 'which sonar-scanner'
+		    sh 'sonar-scanner -version'
+		    sh 'pwd'
+		    sh 'sonarScanner ../conf/sonar-scanner.properties'
+        }
       }
     }
     stage('TestChange') {
@@ -49,12 +55,7 @@ pipeline {
         stage('UAT static code test') {
           steps {
             //snDevOpsChange()
-            withSonarQubeEnv('SonarQube_Cloud') {
-          	sh 'which sonar-scanner'
-		    sh 'sonar-scanner -version'
-		    sh 'pwd'
-		    sh 'sonarScanner ../conf/sonar-scanner.properties'
-        }
+           
             echo 'test'
             
           }
