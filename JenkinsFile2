@@ -71,9 +71,7 @@ pipeline {
             snDevOpsStep()
             //snDevOpsChange()
             echo 'test'
-            withSonarQubeEnv('SonarQube_Cloud') {
-              sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner2.properties'
-            }
+            
           }
         }
       }
