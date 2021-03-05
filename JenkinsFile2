@@ -1,83 +1,83 @@
 pipeline {
-    agent any
-    stages {
-		stage('Initialize') {
-			steps {
-			echo 'eshwar'
-			}
-		}
-		stage('Build') {
-			steps {
-				echo 'build'
-				 withSonarQubeEnv('SonarQube_Local') {
-       sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner.properties'
-              }	
-			}
-		}
-		stage('CodeQuality') {
-			steps {
-			snDevOpsStep()
-			
-			}
-		}
-		stage('UAT') {
-			steps {
-			snDevOpsStep()
-				
-				 withSonarQubeEnv('SonarQube_Cloud') {
-       sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner2.properties'
-              }	
-	      //snDevOpsSonar(name:'SonarQube_Cloud', projectKey:'TestingSonarQube')
-			}
-		}
-		stage('Prod') {
-			steps {
-			echo 'prod'
-			 withSonarQubeEnv('SonarQube_Local') {
-       sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner.properties'
-              }	
-	       withSonarQubeEnv('SonarQube_Cloud') {
-       sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner2.properties'
-              }	
-					
-			}
-		}
-		stage('TestChange') {
-			steps {
-			echo 'TestChange'
-			//sleep(60)
-			//snDevOpsChange()
-					
-			}
-		}
-		
-		stage('UAT test') {
-            parallel {
-                stage('UAT test test1') {
-                    steps {
-                         echo 'test'
-			  withSonarQubeEnv('SonarQube_Local') {
-       sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner.properties'
-              }	
-                    }
-                    post {
-                        success {
-                            echo 'test'
-                        }
-                    }
-                }
-                stage('UAT static code test') {
-                    steps {
-                        snDevOpsStep()
-                        //snDevOpsChange()
-                            echo 'test'
-			     withSonarQubeEnv('SonarQube_Cloud') {
-       sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner2.properties'
-              }	
-                    }
-                }
-            }
+  agent any
+  stages {
+    stage('Initialize') {
+      steps {
+        echo 'eshwar'
+      }
+    }
+    stage('Build') {
+      steps {
+        echo 'build'
+        withSonarQubeEnv('SonarQube_Local') {
+          sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner.properties'
         }
-		
-	}
+      }
+    }
+    stage('CodeQuality') {
+      steps {
+        snDevOpsStep()
+
+      }
+    }
+    stage('UAT') {
+      steps {
+        snDevOpsStep()
+
+        withSonarQubeEnv('SonarQube_Cloud') {
+          sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner2.properties'
+        }
+        //snDevOpsSonar(name:'SonarQube_Cloud', projectKey:'TestingSonarQube')
+      }
+    }
+    stage('Prod') {
+      steps {
+        echo 'prod'
+        withSonarQubeEnv('SonarQube_Local') {
+          sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner.properties'
+        }
+        withSonarQubeEnv('SonarQube_Cloud') {
+          sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner2.properties'
+        }
+
+      }
+    }
+    stage('TestChange') {
+      steps {
+        echo 'TestChange'
+        //sleep(60)
+        //snDevOpsChange()
+
+      }
+    }
+
+    stage('UAT test') {
+      parallel {
+        stage('UAT test test1') {
+          steps {
+            echo 'test'
+            withSonarQubeEnv('SonarQube_Local') {
+              sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner.properties'
+            }
+          }
+          post {
+            success {
+              echo 'test'
+            }
+          }
+        }
+        stage('UAT static code test') {
+          steps {
+            snDevOpsStep()
+            //snDevOpsChange()
+            echo 'test'
+            withSonarQubeEnv('SonarQube_Cloud') {
+              sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner2.properties'
+            }
+          }
+        }
+      }
+    }
+
+  }
 }
