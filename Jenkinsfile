@@ -24,10 +24,6 @@ pipeline {
     stage('Prod') {
       steps {
         echo 'prod'
-        withSonarQubeEnv('SonarQube_Cloud') {
-          sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner2.properties'
-        }
-
       }
     }
     stage('TestChange') {
@@ -54,7 +50,10 @@ pipeline {
           steps {
             //snDevOpsChange()
             withSonarQubeEnv('SonarQube_Cloud') {
-          sh '/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/bin/sonar-scanner -Dproject.settings=/Users/eshwar.molugu/git/app-devops-jenkins/work/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarScanner/conf/sonar-scanner2.properties'
+          	sh 'which sonar-scanner'
+		    sh 'sonar-scanner -version'
+		    sh 'pwd'
+		    sh 'sonarScanner ../conf/sonar-scanner.properties'
         }
             echo 'test'
             
