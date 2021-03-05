@@ -25,8 +25,6 @@ pipeline {
       steps {
         echo 'prod'
 	       withSonarQubeEnv('SonarQube_Cloud') {
-		     sh 'find . -name sonar-scanner'
-		    sh 'sonarScanner ../conf/sonar-scanner.properties'
         }
       }
     }
