@@ -25,7 +25,8 @@ pipeline {
       steps {
         echo 'prod'
 	       withSonarQubeEnv('SonarQube_Cloud') {
-		      sh 'sonarScanner -Dproject.settings=sonar-scanner.properties'
+		     // sh 'sonarScanner -Dproject.settings=sonar-scanner.properties'
+		       sh './gradlew sonarqube'
         }
       }
     }
