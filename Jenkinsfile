@@ -22,14 +22,19 @@ pipeline {
       }
     }
     stage('Prod') {
+	    environment {
+    		 SCANNER_HOME = tool 'sonarScanner'
+   		 //ORGANIZATION = "igorstojanovski-github"
+    		 //PROJECT_NAME = "igorstojanovski_jenkins-pipeline-as-code"
+  		}
       steps {
         echo 'prod'
 	      //sh 'def scannerHome = tool 'SonarScanner 4.0';'
-	       withSonarQubeEnv('SonarQube_Cloud',envOnly: true) {
+	       withSonarQubeEnv('SonarQube_Cloud') {
 		     // sh 'sonarScanner -Dproject.settings=sonar-scanner.properties'
 		      // sh './gradlew sonarqube'
-		       println ${env.SONAR_HOST_URL}
-		       sh 'mvn clean package sonar:sonar'
+		      // println ${env.SONAR_HOST_URL}
+		       sh '${SCANNER_HOME}'
 		       
         }
       }
