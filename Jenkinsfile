@@ -25,10 +25,10 @@ pipeline {
       steps {
         echo 'prod'
 	      //sh 'def scannerHome = tool 'SonarScanner 4.0';'
-	       withSonarQubeEnv('SonarQube_Cloud') {
+	       withSonarQubeEnv('SonarQube_Cloud',envOnly: true) {
 		     // sh 'sonarScanner -Dproject.settings=sonar-scanner.properties'
 		      // sh './gradlew sonarqube'
-		       println '${env.SONAR_HOST_URL}'
+		       println ${env.SONAR_HOST_URL}
 		       sh 'mvn clean package sonar:sonar'
 		       
         }
