@@ -28,7 +28,7 @@ pipeline {
 	       withSonarQubeEnv('SonarQube_Cloud') {
 		     // sh 'sonarScanner -Dproject.settings=sonar-scanner.properties'
 		      // sh './gradlew sonarqube'
-		       sh 'echo ${env.SONAR_HOST_URL}'
+		       println '${env.SONAR_HOST_URL}'
 		       sh 'mvn clean package sonar:sonar'
 		       
         }
