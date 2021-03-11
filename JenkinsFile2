@@ -52,7 +52,7 @@ pipeline {
     }
 
     stage('UAT test') {
-     // parallel {
+      stages {
         stage('UAT test test1') {
           steps {
             echo 'test'
@@ -77,7 +77,7 @@ pipeline {
             
           }
         }
-      //}
+      }
     }
 
   }
