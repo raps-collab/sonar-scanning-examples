@@ -4,6 +4,7 @@ pipeline {
     stage('Initialize') {
       steps {
         echo 'eshwar'
+	snDevOpsChange()
       }
     }
     stage('Build') {
