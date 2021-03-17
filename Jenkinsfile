@@ -43,6 +43,9 @@ pipeline {
       }
     }
     stage('TestChange') {
+	      when {
+                branch 'dev' 
+            }
       steps {
         echo 'TestChange'
         //sleep(60)
@@ -51,6 +54,9 @@ pipeline {
       }
     }
     stage('UAT test') {
+	    when {
+                branch 'feature1' 
+            }
       parallel {
         stage('UAT test test1') {
           steps {
