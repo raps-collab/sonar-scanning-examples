@@ -55,7 +55,7 @@ pipeline {
     }
     stage('UAT test') {
 	    when {
-                branch 'feature1' 
+                branch 'removesonarlanguage' 
             }
       parallel {
         stage('UAT test test1') {
