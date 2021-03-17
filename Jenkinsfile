@@ -44,7 +44,7 @@ pipeline {
     }
     stage('TestChange') {
 	      when {
-                branch 'dev' 
+                branch 'master' 
             }
       steps {
         echo 'TestChange'
