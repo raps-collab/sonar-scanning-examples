@@ -7,7 +7,7 @@ tools {
     stage('Initialize') {
       steps {
         echo 'eshwar'
-	      sh 'mvn clean install'
+	      //sh 'mvn clean install'
 	snDevOpsChange()
       }
     }
