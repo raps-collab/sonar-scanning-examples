@@ -46,15 +46,19 @@ pipeline {
       }
     }
     stage('TestChange') {
-	      when {
-                branch 'master' 
-            }
-      steps {
-        echo 'TestChange'
-        //sleep(60)
-        //snDevOpsChange()
+	    stages{
+		    stage('TestChangeNestedStage'){
+			    steps {
+       				 echo 'TestChange'
+       				 //sleep(60)
+      				  //snDevOpsChange()
+				sh 'mvn clean test -Dtest="*.*" -Dpublish'
+       				 junit '**/target/surefire-reports/*.xml'
 
-      }
+     				 }
+		    }
+	    }
+      
     }
     stage('UAT test') {
 	stages{
