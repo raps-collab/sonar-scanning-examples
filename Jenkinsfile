@@ -57,9 +57,12 @@ tools {
        				 //sleep(60)
       				  //snDevOpsChange()
 				sh 'mvn clean test -Dtest="acme.*" -Dpublish'
-       				 junit '**/target/surefire-reports/*.xml'
-
      				 }
+			    post{
+				    always{
+				junit '**/target/surefire-reports/*.xml'
+				    }
+			    }
 		    }
 	    }
       
