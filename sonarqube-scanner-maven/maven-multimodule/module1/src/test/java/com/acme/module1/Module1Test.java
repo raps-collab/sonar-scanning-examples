@@ -7,6 +7,7 @@ public class Module1Test {
   @Test
   public void coveredByUnitTest() {
      assertTrue(false);
+    
   }
    @Test
   public void coveredByUnitTest() {
