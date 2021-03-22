@@ -10,7 +10,7 @@ public class Module1Test {
     
   }
    @Test
-  public void coveredByUnitTest() {
+  public void coveredByUnitTest1() {
      assertTrue(true);
   }
 }
