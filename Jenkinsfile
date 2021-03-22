@@ -13,7 +13,7 @@ pipeline {
 	    // sh  'mvn clean install'
       }
     }
-    stage('CodeQuality') {
+    stage('CodeQuality') {	
       steps {
         echo 'codquality'
       }
@@ -57,6 +57,7 @@ pipeline {
       }
     }
     stage('UAT test') {
+	    stages{
         stage('MultiStage') {
            environment {
     		 SCANNER_HOME = tool 'sonarScanner'
@@ -81,6 +82,7 @@ pipeline {
             }
           }
         }
+	    }
     }
 
   }
