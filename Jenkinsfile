@@ -56,7 +56,7 @@ tools {
        				 echo 'TestChange'
        				 //sleep(60)
       				  //snDevOpsChange()
-				sh 'mvn clean test -Dtest="*.*" -Dpublish'
+				sh 'mvn clean test -Dtest="acme.*" -Dpublish'
        				 junit '**/target/surefire-reports/*.xml'
 
      				 }
