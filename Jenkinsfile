@@ -81,14 +81,6 @@ pipeline {
             }
           }
         }
-        stage('MultiStage2') {
-          steps {
-            //snDevOpsChange()
-           
-            echo 'MultiStage2'
-            
-          }
-        }
     }
 
   }
