@@ -24,6 +24,9 @@ pipeline {
       }
     }
     stage('Prod') {
+	    when {
+                branch 'dev' 
+            }
 	    environment {
     		 SCANNER_HOME = tool 'sonarScanner'
    		 //ORGANIZATION = "igorstojanovski-github"
@@ -54,29 +57,38 @@ pipeline {
       }
     }
     stage('UAT test') {
-	    when {
-                branch 'removesonarlanguage' 
-            }
-      parallel {
-        stage('UAT test test1') {
-          steps {
-            echo 'test'
-          }
+        stage('MultiStage') {
+           environment {
+    		 SCANNER_HOME = tool 'sonarScanner'
+   		 //ORGANIZATION = "igorstojanovski-github"
+    		 //PROJECT_NAME = "igorstojanovski_jenkins-pipeline-as-code"
+  		}
+      steps {
+        echo 'prod'
+	      //sh 'def scannerHome = tool 'SonarScanner 4.0';'
+	       withSonarQubeEnv('SonarQube_Cloud') {
+		     //  sh “/usr/local/apache-maven/apache-maven-3.3.9/bin/mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=admin -Dsonar.password=admin -Dsonar.github.repository=bvelivala/SampleInsurance -Dsonar.projectName=Autoclaim_${BUILD_NUMBER} -Dsonar.projectVersion=${BUILD_NUMBER} -Dsonar.sources=src/main”
+		     // sh 'sonarScanner -Dproject.settings=sonar-scanner.properties'
+		      // sh './gradlew sonarqube'
+		      // println ${env.SONAR_HOST_URL}
+		       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
+		       
+        }
+      }
           post {
             success {
               echo 'test'
             }
           }
         }
-        stage('UAT static code test') {
+        stage('MultiStage2') {
           steps {
             //snDevOpsChange()
            
-            echo 'test'
+            echo 'MultiStage2'
             
           }
         }
-      }
     }
 
   }
