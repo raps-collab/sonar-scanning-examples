@@ -28,9 +28,6 @@ tools {
       }
     }
     stage('Prod') {
-	    when {
-                branch 'dev' 
-            }
 	    environment {
     		 SCANNER_HOME = tool 'sonarScanner'
    		 //ORGANIZATION = "igorstojanovski-github"
@@ -50,6 +47,9 @@ tools {
       }
     }
     stage('TestChange') {
+	    when {
+                branch 'dev' 
+            }
 	    stages{
 		    stage('TestChangeNestedStage'){
 			    steps {
@@ -68,6 +68,9 @@ tools {
       
     }
     stage('UAT test') {
+	    when {
+                branch 'dev' 
+            }
 	stages{
         	stage('MultiStage') {
           		 environment {
