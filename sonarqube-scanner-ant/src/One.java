@@ -2,7 +2,7 @@ public class One {
   String message = "foo";
 
   public String foo() {
-    return message ;
+    return message;
   }
 
   public void uncoveredMethod() {
