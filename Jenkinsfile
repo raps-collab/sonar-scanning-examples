@@ -37,6 +37,7 @@ agent any
 		      		 sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
 		       
        				}
+			}
     }
     stage('UAT') {
       steps {
