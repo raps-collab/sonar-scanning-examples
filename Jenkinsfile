@@ -18,9 +18,6 @@ agent any
       }
     }
     stage('CodeQuality') {
-	     when {
-                branch 'dev' 
-            }
      environment {
     			 SCANNER_HOME = tool 'sonarScanner'
    				 //ORGANIZATION = "igorstojanovski-github"
