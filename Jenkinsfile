@@ -18,6 +18,9 @@ agent any
       }
     }
     stage('CodeQuality') {
+	     when {
+                branch 'refs/remotes/origin/dev' 
+            }
      environment {
     			 SCANNER_HOME = tool 'sonarScanner'
    				 //ORGANIZATION = "igorstojanovski-github"
@@ -65,7 +68,7 @@ agent any
     }
     stage('TestChange') {
 	    when {
-                branch 'dev' 
+                branch 'refs/remotes/origin/dev' 
             }
 	    stages{
 		    stage('TestChangeNestedStage'){
