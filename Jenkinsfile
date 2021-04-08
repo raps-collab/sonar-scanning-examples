@@ -1,8 +1,8 @@
 pipeline {
 agent any
-tools {
-    maven "Maven_Local"
-  }
+//tools {
+  //  maven "Maven_Local"
+ // }
   stages {
     stage('Initialize') {
       steps {
