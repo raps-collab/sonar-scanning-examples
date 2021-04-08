@@ -36,7 +36,7 @@ tools {
       steps {
         echo 'prod'
 	      //sh 'def scannerHome = tool 'SonarScanner 4.0';'
-	       withSonarQubeEnv('SonarQube_Local') {
+	       withSonarQubeEnv('Sonar_Cloud') {
 		     //  sh “/usr/local/apache-maven/apache-maven-3.3.9/bin/mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=admin -Dsonar.password=admin -Dsonar.github.repository=bvelivala/SampleInsurance -Dsonar.projectName=Autoclaim_${BUILD_NUMBER} -Dsonar.projectVersion=${BUILD_NUMBER} -Dsonar.sources=src/main”
 		     // sh 'sonarScanner -Dproject.settings=sonar-scanner.properties'
 		      // sh './gradlew sonarqube'
