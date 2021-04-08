@@ -41,7 +41,7 @@ agent any
 		     // sh 'sonarScanner -Dproject.settings=sonar-scanner.properties'
 		      // sh './gradlew sonarqube'
 		      // println ${env.SONAR_HOST_URL}
-		       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
+		       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner-cloud.properties'
 		       
         }
       }
