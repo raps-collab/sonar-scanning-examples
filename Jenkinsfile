@@ -28,6 +28,9 @@ agent any
       }
     }
     stage('Prod') {
+	when {
+                branch 'dev' 
+            }
 	    environment {
     		 SCANNER_HOME = tool 'sonarScanner'
    		 //ORGANIZATION = "igorstojanovski-github"
