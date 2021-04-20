@@ -10,7 +10,7 @@ private ArrayList<String> fValidateOrderedList;
   public void uncoveredMethod() {
     System.out.println(foo());
   }
-  public void setValidateOrderedList(ArrayList<PhoneValidate> validateOrderedList) {
+  public void setValidateOrderedList(ArrayList<String> validateOrderedList) {
 		fValidateOrderedList = validateOrderedList;
   }
 }
