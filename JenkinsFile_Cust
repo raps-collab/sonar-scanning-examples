@@ -1,5 +1,5 @@
 #!/usr/bin/groovy
-@Library('pipeline-library') _
+
 // pipeline-library (above) is imported from DOCET. Their github with all the source code is here:
 //  https://github.devops.worldpay.local/DOCET/wp-pipeline-library
 
