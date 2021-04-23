@@ -176,7 +176,7 @@ def sonarTest() {
 		       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
 		       
         
-      }
+      
         }
         timeout(time: 5, unit: 'MINUTES') {
             def qg = waitForQualityGate()
