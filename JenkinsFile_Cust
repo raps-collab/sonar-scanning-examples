@@ -5,7 +5,9 @@
 
 pipeline {
 agent any
-
+  environment {
+    		 SCANNER_HOME = tool 'sonarScanner'
+  		}
     stages {
         stage('Build with Tests, Running Sonar') {
             steps {
@@ -14,9 +16,9 @@ agent any
         }
 
         stage('Publish artifact to ServiceNow') {
-            environment {
-    		 SCANNER_HOME = tool 'sonarScanner'
-  		}
+            //environment {
+    		// SCANNER_HOME = tool 'sonarScanner'
+  		//}
             steps {
               
 	       withSonarQubeEnv('SonarQube_Cloud') {
@@ -73,7 +75,7 @@ agent any
                 stage('SonarQube Report Upload to ServiceNow'){
                     steps {
                        echo 'sonartest'
-			    // sonarTest()
+			     sonarTest()
                     }
                 }
             }
@@ -156,9 +158,7 @@ agent any
 
 def sonarTest() {
     
-        environment {
-    		 SCANNER_HOME = tool 'sonarScanner'
-  		}
+      
 	       withSonarQubeEnv('SonarQube_Cloud') {
 		       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
         }
