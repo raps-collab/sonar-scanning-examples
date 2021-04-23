@@ -14,13 +14,14 @@ agent any
         }
 
         stage('Publish artifact to ServiceNow') {
-            when {
-                branch 'release-*'
-            }
+            environment {
+    		 SCANNER_HOME = tool 'sonarScanner'
+  		}
             steps {
-                script {
-                    uploadArtifactToServiceNow()
-                }
+              
+	       withSonarQubeEnv('SonarQube_Cloud') {
+		       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
+        }
             }
         } //Publish artifact to ServiceNow
 
@@ -71,7 +72,8 @@ agent any
 
                 stage('SonarQube Report Upload to ServiceNow'){
                     steps {
-                        sonarTest()
+                       echo 'sonartest'
+			    // sonarTest()
                     }
                 }
             }
