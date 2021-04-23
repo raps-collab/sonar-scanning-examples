@@ -153,13 +153,7 @@ agent any
 
 
 def sonarTest() {
-    if (!env.CODE_CHANGES) {
-        echo "Skipping - there are no code changes."
-        return
-    } else {
-        echo "Not skipping there are code changes."
-    }
-
+    
     try {
         environment {
     		 SCANNER_HOME = tool 'sonarScanner'
