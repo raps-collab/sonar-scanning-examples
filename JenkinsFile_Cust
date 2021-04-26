@@ -12,6 +12,7 @@ agent any
         stage('Build with Tests, Running Sonar') {
             steps {
                 echo "Build"
+		    snDevOpsChange()
             }
         }
 
