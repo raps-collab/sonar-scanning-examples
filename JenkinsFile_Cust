@@ -17,14 +17,11 @@ agent any
         }
 
         stage('Publish artifact to ServiceNow') {
-            //environment {
-    		// SCANNER_HOME = tool 'sonarScanner'
-  		//}
             steps {
-              
-	       withSonarQubeEnv('SonarQube_Cloud') {
-		       sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
-        }
+		    echo 'Publish artifact to ServiceNow'
+	       //withSonarQubeEnv('SonarQube_Cloud') {
+		    //   sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
+        //}
             }
         } //Publish artifact to ServiceNow
 
