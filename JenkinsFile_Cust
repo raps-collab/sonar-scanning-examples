@@ -105,9 +105,6 @@ agent any
         }  // stage('Final Tests')
 
         stage('Deployment to production'){
-            when {
-                branch 'master'
-            }
             steps {
                 createServiceNowChangeRequest()
             }
