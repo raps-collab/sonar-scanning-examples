@@ -9,130 +9,26 @@ agent any
     		 SCANNER_HOME = tool 'sonarScanner'
   		}
     stages {
-        stage('Build with Tests, Running Sonar') {
+       stage('J1') {
             steps {
-                echo "Build"
-		    //snDevOpsChange()
+                echo "Deploy to Nexus"
             }
         }
-
-        stage('Publish artifact to ServiceNow') {
-            steps {
-		    echo 'Publish artifact to ServiceNow'
-	       //withSonarQubeEnv('SonarQube_Cloud') {
-		    //   sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
-        //}
-            }
-        } //Publish artifact to ServiceNow
-
-        stage('Publish Pact, OCP Init') {
-            steps {
-                echo "Publish Pact, OCP Init"
-            }
-        }
-
-        stage('Build, Deploy, and Checkmarx') {
-            parallel {
-                stage('A2CR App Build and Deploy') {
-                    steps {
-                        echo "A2CR App Build and Deploy"
-                    }
-                }
-
-                stage('A2CO Stub Server Build and Deploy') {
-                    steps {
-                        echo "A2CO Stub Server Build and Deploy"
-                    }
-                }
-
-                stage('Checkmarx') {
-                    steps {
-                        echo "Checkmarx"
-                    }
-                }
-
-                stage('Functional Test') {
-                    steps {
-                        functionalTest()
-                    }
-                }
-            }
-        }
-
-        stage('Service Now reports uploads') {
-            parallel {
-                stage('Checkmarx Report Upload to ServiceNow'){
-                    when {
-                        branch 'release-*'
-                    }
-                    steps {
-                        echo "Uploading Checkmarx report"
-                    }
-                }
-
-                stage('SonarQube Report Upload to ServiceNow'){
+        stage('J2Sonar') {
                     steps {
                        echo 'sonartest'
 			     sonarTest()
                     }
                 }
-            }
-        }
+         
 
-        stage('Final Tests') {
-            parallel {
-                stage('Component Test') {
-                    steps {
-                        echo "Component Test"
-                    }
-                }
-
-                stage('Pact Verification') {
-                    steps {
-                        echo "Contract Test"
-                    }
-                }
-
-                stage('Performance Test') {
-                    steps {
-                        echo "Perf Test"
-                    }  // end steps for Performance Test
-                }  // end Performance Test
-            }  // end Parallel
-        }  // stage('Final Tests')
-
-        stage('Deployment to production'){
+        stage('J3Change'){
             steps {
                 createServiceNowChangeRequest()
             }
         } //Deployment to production
 
-        stage('Nexus Deploy') {
-            steps {
-                echo "Deploy to Nexus"
-            }
-        }
-
-        stage('Increment version') {
-            when {
-                branch 'release-*'
-            }
-            steps {
-                script {
-                    echo "Version Increment"
-                }
-            }
-        }
-        stage('Push changes to GIT') {
-            when {
-                branch 'release-*'
-            }
-            steps {
-                script {
-                    echo "Push Changes to Git"
-                }
-            }
-        }
+       
     }  // end stages in Maven Agent
     post {
         success {
