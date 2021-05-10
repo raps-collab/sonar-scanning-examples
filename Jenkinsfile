@@ -24,6 +24,12 @@ agent any
         }
       }
     }
+   stage('change') {
+      steps {
+        echo 'change'
+	      snDevOpsChange()
+        }
+    }
 
   }
 }
