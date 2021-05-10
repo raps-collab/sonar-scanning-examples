@@ -9,6 +9,9 @@ public class One {
 	 public String message7 = "";
 	 public String message8 = ""; 
 	 public String message9 = "";
+	 public String message10 = "";
+	 public String message11 = ""; 
+	 public String message12 = "";
 	
 	
   public String foo() {
