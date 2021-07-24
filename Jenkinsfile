@@ -46,7 +46,7 @@ agent any
         }
       }
     }
-    stage('Prod') {
+   /* stage('Prod') {
 	    environment {
     		 SCANNER_HOME = tool 'sonarScanner'
    		 //ORGANIZATION = "igorstojanovski-github"
@@ -64,7 +64,7 @@ agent any
 		       
         }
       }
-    }
+    }*/
     stage('TestChange') {
 	    when {
                 branch 'dev' 
@@ -86,7 +86,7 @@ agent any
 	    }
       
     }
-    stage('UAT test') {
+    /*stage('UAT test') {
 	    when {
                 branch 'dev' 
             }
@@ -111,7 +111,7 @@ agent any
      			 }
         }
 	    }
-    }
+    }*/
 
   }
 }
