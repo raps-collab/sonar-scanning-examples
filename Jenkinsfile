@@ -67,7 +67,7 @@ agent any
     }*/
     stage('TestChange') {
 	    when {
-                branch 'dev' 
+                branch 'master' 
             }
 	    stages{
 		    stage('TestChangeNestedStage'){
