@@ -66,9 +66,6 @@ agent any
       }
     }*/
     stage('TestChange') {
-	    when {
-                branch 'master' 
-            }
 	    stages{
 		    stage('TestChangeNestedStage'){
 			    steps {
